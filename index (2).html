@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vipul Education — Coaching Institute, Lucknow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#161B4D;
+    --navy-deep:#0E1238;
+    --orange:#FF6B35;
+    --yellow:#FFC93C;
+    --teal:#0AA184;
+    --cream:#FFF9F0;
+    --ink:#23233B;
+    --ink-soft:#5A5A72;
+    --line:#E7E2D6;
+    --radius-card:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logo{font-family:'Poppins',sans-serif;}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:3px solid var(--orange); outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy);
+    border-bottom:3px solid var(--orange);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    color:#fff; font-weight:700; font-size:1.35rem; letter-spacing:.2px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo span{color:var(--yellow);}
+  .logo .mark{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,var(--orange),var(--yellow));
+    display:flex;align-items:center;justify-content:center;
+    color:var(--navy-deep); font-weight:800; font-size:1.1rem;
+    flex-shrink:0;
+  }
+  nav.links{display:flex; gap:34px;}
+  nav.links a{
+    color:#DCE0F5; font-weight:500; font-size:.98rem;
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  nav.links a:hover{color:#fff; border-color:var(--orange);}
+  .nav-cta{
+    background:var(--orange); color:#fff; font-weight:600;
+    padding:10px 20px; border-radius:999px; font-size:.92rem;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:#e85a26;}
+  .burger{display:none; background:none; border:0; color:#fff; font-size:1.6rem; cursor:pointer;}
+
+  @media (max-width:860px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--navy); flex-direction:column; gap:0;
+      max-height:0; overflow:hidden; transition:max-height .25s ease;
+    }
+    nav.links.open{max-height:320px;}
+    nav.links a{padding:16px 24px; border-bottom:1px solid rgba(255,255,255,.08);}
+    .nav-cta{display:none;}
+    .burger{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(ellipse at 20% 20%, #232a6e 0%, var(--navy) 45%, var(--navy-deep) 100%);
+    color:#fff; padding:100px 0 130px;
+  }
+  .hero::before, .hero::after{
+    content:""; position:absolute; border-radius:50%;
+  }
+  .hero::before{
+    width:340px; height:340px; background:var(--orange); opacity:.28;
+    top:-100px; right:-80px; filter:blur(6px);
+  }
+  .hero::after{
+    width:220px; height:220px; background:var(--teal); opacity:.35;
+    bottom:-90px; right:18%;
+  }
+  .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center;}
+  .eyebrow-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+    padding:8px 16px; border-radius:999px; font-size:.85rem; color:var(--yellow);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.2vw, 3.3rem); font-weight:700; line-height:1.15;
+    margin-bottom:22px;
+  }
+  .hero p.lead{
+    font-size:1.12rem; color:#C9CDEC; max-width:520px; margin-bottom:32px;
+  }
+  .btn-row{display:flex; flex-wrap:wrap; gap:16px;}
+  .btn{
+    display:inline-block; padding:15px 28px; border-radius:10px;
+    font-weight:600; font-size:.98rem; cursor:pointer; border:2px solid transparent;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn-primary{background:var(--orange); color:#fff;}
+  .btn-primary:hover{background:#e85a26; transform:translateY(-2px);}
+  .btn-ghost{border-color:rgba(255,255,255,.4); color:#fff;}
+  .btn-ghost:hover{border-color:#fff; transform:translateY(-2px);}
+
+  .hero-art{position:relative; height:360px;}
+  .hero-art .stat-card{
+    position:absolute; background:#fff; color:var(--ink);
+    border-radius:16px; padding:18px 20px; box-shadow:0 18px 40px rgba(0,0,0,.28);
+  }
+  .hero-art .stat-card strong{display:block; font-family:'Poppins',sans-serif; font-size:1.6rem; color:var(--navy);}
+  .hero-art .stat-card span{font-size:.82rem; color:var(--ink-soft);}
+  .card-1{top:10px; left:10px; border-top:5px solid var(--orange);}
+  .card-2{top:150px; right:0; border-top:5px solid var(--teal);}
+  .card-3{bottom:0; left:60px; border-top:5px solid var(--yellow);}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-art{height:280px; margin-top:20px;}
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{
+    font-size:clamp(1.7rem,3vw,2.3rem); font-weight:700; color:var(--navy);
+    margin-bottom:14px; line-height:1.25;
+  }
+  .section-head p{color:var(--ink-soft); font-size:1.05rem;}
+  .accent-underline{
+    width:56px; height:5px; border-radius:3px;
+    background:linear-gradient(90deg,var(--orange),var(--yellow));
+    margin-bottom:20px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  #about{background:#fff;}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .about-copy p{color:var(--ink-soft); margin-bottom:16px; font-size:1.03rem;}
+  .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .stat-box{
+    background:var(--cream); border-radius:16px; padding:26px 22px;
+    border-left:5px solid var(--teal);
+  }
+  .stat-box:nth-child(2){border-left-color:var(--orange);}
+  .stat-box:nth-child(3){border-left-color:var(--yellow);}
+  .stat-box:nth-child(4){border-left-color:var(--navy);}
+  .stat-box strong{
+    display:block; font-family:'Poppins',sans-serif; font-size:2rem; color:var(--navy);
+  }
+  .stat-box span{color:var(--ink-soft); font-size:.92rem;}
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- COURSES ---------- */
+  #courses{background:var(--navy-deep); color:#fff;}
+  #courses .section-head p{color:#B9BEE0;}
+  #courses .section-head h2{color:#fff;}
+  .course-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .course-card{
+    background:#1E2456; border-radius:var(--radius-card); padding:30px 26px;
+    position:relative; overflow:hidden;
+  }
+  .course-card .tag{
+    display:inline-block; font-size:.78rem; font-weight:600; padding:5px 12px;
+    border-radius:999px; margin-bottom:18px; color:var(--navy-deep);
+  }
+  .course-card h3{font-size:1.2rem; margin-bottom:10px; color:#fff;}
+  .course-card p{color:#B9BEE0; font-size:.95rem;}
+  .course-card:nth-child(1) .tag{background:var(--orange); color:#fff;}
+  .course-card:nth-child(2) .tag{background:var(--yellow);}
+  .course-card:nth-child(3) .tag{background:var(--teal); color:#fff;}
+  .course-card:nth-child(4) .tag{background:var(--orange); color:#fff;}
+  .course-card:nth-child(5) .tag{background:var(--yellow);}
+  .course-card:nth-child(6) .tag{background:var(--teal); color:#fff;}
+
+  @media (max-width:900px){
+    .course-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .course-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- FACULTY ---------- */
+  #faculty{background:#fff;}
+  .faculty-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:26px;}
+  .faculty-card{
+    background:var(--cream); border-radius:var(--radius-card); padding:26px 22px;
+    text-align:left;
+  }
+  .faculty-photo{
+    width:64px; height:64px; border-radius:14px; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:1.2rem; color:#fff;
+  }
+  .faculty-card:nth-child(1) .faculty-photo{background:var(--orange);}
+  .faculty-card:nth-child(2) .faculty-photo{background:var(--teal);}
+  .faculty-card:nth-child(3) .faculty-photo{background:var(--navy);}
+  .faculty-card:nth-child(4) .faculty-photo{background:#D6A100;}
+  .faculty-card h3{font-size:1.05rem; color:var(--navy); margin-bottom:4px;}
+  .faculty-card .role{font-size:.85rem; color:var(--orange); font-weight:600; margin-bottom:10px; display:block;}
+  .faculty-card p{color:var(--ink-soft); font-size:.9rem;}
+
+  @media (max-width:900px){
+    .faculty-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .faculty-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- WHY US ---------- */
+  #why{background:var(--cream);}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:28px;}
+  .why-item{text-align:left;}
+  .why-item .icon{
+    width:52px; height:52px; border-radius:14px; margin-bottom:16px;
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+    color:#fff;
+  }
+  .why-item:nth-child(1) .icon{background:var(--orange);}
+  .why-item:nth-child(2) .icon{background:var(--teal);}
+  .why-item:nth-child(3) .icon{background:var(--navy);}
+  .why-item:nth-child(4) .icon{background:#D6A100;}
+  .why-item h3{font-size:1.05rem; margin-bottom:8px; color:var(--navy);}
+  .why-item p{color:var(--ink-soft); font-size:.94rem;}
+
+  @media (max-width:860px){
+    .why-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .why-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- CONTACT ---------- */
+  #contact{background:#fff;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .contact-info h3{color:var(--navy); font-size:1.15rem; margin-bottom:18px;}
+  .info-row{display:flex; gap:14px; margin-bottom:22px; align-items:flex-start;}
+  .info-row .ic{
+    width:42px;height:42px; border-radius:10px; background:var(--cream);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    color:var(--orange); font-size:1.1rem;
+  }
+  .info-row strong{display:block; color:var(--ink); font-size:.96rem;}
+  .info-row span{color:var(--ink-soft); font-size:.9rem;}
+
+  form{display:flex; flex-direction:column; gap:16px;}
+  .field label{display:block; font-size:.86rem; font-weight:600; color:var(--navy); margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:13px 14px; border-radius:10px; border:1.5px solid var(--line);
+    font-family:'Inter',sans-serif; font-size:.96rem; color:var(--ink); background:var(--cream);
+  }
+  .field textarea{resize:vertical; min-height:100px;}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--orange);}
+  .row-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .submit-btn{
+    background:var(--navy); color:#fff; border:0; padding:15px 24px;
+    border-radius:10px; font-weight:600; font-size:.98rem; cursor:pointer; margin-top:6px;
+  }
+  .submit-btn:hover{background:var(--navy-deep);}
+  .form-note{font-size:.85rem; color:var(--ink-soft); margin-top:4px;}
+
+  @media (max-width:860px){
+    .contact-grid{grid-template-columns:1fr;}
+    .row-2{grid-template-columns:1fr;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy-deep); color:#B9BEE0; padding:40px 0;}
+  .foot-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .foot-inner .logo{font-size:1.1rem;}
+  footer p{font-size:.85rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="logo"><span class="mark">VE</span>Vipul <span>Education</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#courses">Courses</a>
+      <a href="#faculty">Faculty</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Book a demo class</a>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow-badge">📍 Aliganj, Lucknow</div>
+      <h1>Where curious minds turn into confident achievers</h1>
+      <p class="lead">Vipul Education is a coaching institute for classes 6 to 12, and for JEE &amp; NEET aspirants — built on small batches, doubt-clearing that never stops, and teachers who know your child's name.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Book a free demo class</a>
+        <a href="#courses" class="btn btn-ghost">Explore courses</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="stat-card card-1"><strong>12+</strong><span>years of teaching</span></div>
+      <div class="stat-card card-2"><strong>5,000+</strong><span>students guided</span></div>
+      <div class="stat-card card-3"><strong>94%</strong><span>score above 85% in boards</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <div class="accent-underline"></div>
+      <h2>Built by teachers, not a franchise</h2>
+      <p>Vipul Education started in 2013 in a single rented room with fourteen students and a blackboard. Today it runs from a full campus in Aliganj, but the promise hasn't changed: every student gets taught, not just lectured to.</p>
+      <p>Batches are capped so every child gets time with a teacher, not just a seat in a hall. Our faculty are subject specialists — the person teaching Chemistry has taught nothing else for over a decade.</p>
+      <p>We track every student's weak topics week over week, so parents get a real answer to "how is my child doing," not a generic report card.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><strong>40+</strong><span>expert faculty members</span></div>
+      <div class="stat-box"><strong>18</strong><span>students per batch, on average</span></div>
+      <div class="stat-box"><strong>210+</strong><span>selections in JEE &amp; NEET since 2013</span></div>
+      <div class="stat-box"><strong>6</strong><span>days a week of doubt-clearing sessions</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="courses">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="accent-underline"></div>
+      <h2>Courses for every stage of school</h2>
+      <p>From building the basics in middle school to cracking competitive exams — pick the track that matches where your child is right now.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card">
+        <span class="tag">Class 6–8</span>
+        <h3>Foundation Course</h3>
+        <p>Maths and Science taught through concepts, not memorisation, so the harder years ahead feel familiar rather than sudden.</p>
+      </div>
+      <div class="course-card">
+        <span class="tag">Class 9–10</span>
+        <h3>Board Excellence</h3>
+        <p>CBSE, ICSE and UP Board syllabus covered with weekly tests, past-paper practice and a personal weak-topic tracker.</p>
+      </div>
+      <div class="course-card">
+        <span class="tag">Class 11–12 Science</span>
+        <h3>PCM &amp; PCB Track</h3>
+        <p>Physics, Chemistry, Maths or Biology — deep enough for boards and entrance exams to be prepared side by side, not separately.</p>
+      </div>
+      <div class="course-card">
+        <span class="tag">Engineering Entrance</span>
+        <h3>JEE Main &amp; Advanced</h3>
+        <p>Structured problem-solving practice with full-length mock tests and an all-India rank analysis after every test.</p>
+      </div>
+      <div class="course-card">
+        <span class="tag">Medical Entrance</span>
+        <h3>NEET Preparation</h3>
+        <p>NCERT-first teaching backed by extensive Biology practice, since that's where most NEET marks are actually won.</p>
+      </div>
+      <div class="course-card">
+        <span class="tag">Class 11–12</span>
+        <h3>Commerce Batch</h3>
+        <p>Accountancy, Economics and Business Studies taught with real case examples, not just definitions to memorise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faculty">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="accent-underline"></div>
+      <h2>Teachers who've done this for years</h2>
+      <p>Every subject is taught by someone who specialises in it — not a generalist covering three subjects at once.</p>
+    </div>
+    <div class="faculty-grid">
+      <div class="faculty-card">
+        <div class="faculty-photo">RV</div>
+        <h3>Rajesh Verma</h3>
+        <span class="role">Physics</span>
+        <p>14 years teaching JEE &amp; NEET Physics. Known for turning numericals into stories students remember.</p>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-photo">SK</div>
+        <h3>Sunita Kapoor</h3>
+        <span class="role">Chemistry</span>
+        <p>Runs the Chemistry department since 2015. Focuses on NCERT depth over shortcut tricks.</p>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-photo">AM</div>
+        <h3>Anil Mehta</h3>
+        <span class="role">Mathematics</span>
+        <p>Ex-IIT aspirant turned teacher. Builds problem sets that scale in difficulty week by week.</p>
+      </div>
+      <div class="faculty-card">
+        <div class="faculty-photo">PS</div>
+        <h3>Priya Srivastava</h3>
+        <span class="role">Biology</span>
+        <p>Specialises in NEET Biology. Her diagram-first teaching style is the batch favourite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="accent-underline"></div>
+      <h2>What a parent actually notices</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="icon">👩‍🏫</div>
+        <h3>Teachers who stay</h3>
+        <p>Most of our faculty have taught here for 5+ years, so your child isn't relearning a new teacher's style every term.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">📊</div>
+        <h3>Weekly progress reports</h3>
+        <p>Test scores and weak topics are shared with parents every week — no surprises at report card time.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">🕒</div>
+        <h3>Doubt-clearing, daily</h3>
+        <p>A student can walk in and ask a question any weekday evening, not just book an appointment.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">🎯</div>
+        <h3>Small batches</h3>
+        <p>Eighteen students on average per batch, so quieter kids get asked questions too, not just the loudest ones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <div class="accent-underline"></div>
+      <h2 style="color:var(--navy); font-size:1.9rem; margin-bottom:24px;">Come talk to us, or send a message</h2>
+      <div class="info-row">
+        <div class="ic">📍</div>
+        <div><strong>Campus address</strong><span>Vipul Education, near Kapoorthla Crossing, Aliganj, Lucknow, UP 226024</span></div>
+      </div>
+      <div class="info-row">
+        <div class="ic">📞</div>
+        <div><strong>Call or WhatsApp</strong><span>+91 98XXX XX345 · Mon–Sat, 9am–7pm</span></div>
+      </div>
+      <div class="info-row">
+        <div class="ic">✉️</div>
+        <div><strong>Email</strong><span>hello@vipuleducation.in</span></div>
+      </div>
+      <div class="info-row">
+        <div class="ic">🕒</div>
+        <div><strong>Batch timings</strong><span>Morning: 7–10am · Evening: 4–8pm, all days except Sunday</span></div>
+      </div>
+    </div>
+    <div>
+      <form onsubmit="event.preventDefault(); document.getElementById('formMsg').style.display='block'; this.reset();">
+        <div class="row-2">
+          <div class="field">
+            <label for="pname">Parent / student name</label>
+            <input type="text" id="pname" required placeholder="Full name">
+          </div>
+          <div class="field">
+            <label for="pphone">Phone number</label>
+            <input type="tel" id="pphone" required placeholder="10-digit mobile number">
+          </div>
+        </div>
+        <div class="field">
+          <label for="pclass">Class / course interested in</label>
+          <select id="pclass">
+            <option>Class 6–8 Foundation</option>
+            <option>Class 9–10 Board Excellence</option>
+            <option>Class 11–12 Science (PCM/PCB)</option>
+            <option>JEE Main & Advanced</option>
+            <option>NEET Preparation</option>
+            <option>Commerce Batch</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pmsg">Message (optional)</label>
+          <textarea id="pmsg" placeholder="Tell us anything that will help us plan your demo class"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Request a demo class</button>
+        <p class="form-note" id="formMsg" style="display:none; color:var(--teal); font-weight:600;">Thanks — we'll call you within one working day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a href="#top" class="logo" style="color:#fff;">Vipul <span style="color:var(--yellow);">Education</span></a>
+    <p>&copy; 2026 Vipul Education, Lucknow. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const links = document.getElementById('navLinks');
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
